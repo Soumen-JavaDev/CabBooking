@@ -25,7 +25,7 @@ public class Cab {
     private String cabNumber;
     private String cabModel;
 
-    private double perKmRate; // Naming convention (camel case)
+    private double perKmRate;
     private boolean available;
 
 

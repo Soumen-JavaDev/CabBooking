@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class CustomerService { // Corrected class name to follow camel case
+public class CustomerService { 
 
     @Autowired
     private CustomerRepository repository;

@@ -17,7 +17,7 @@ public class CabResponse {
     private String cabNumber;
     private String cabModel;
 
-    private double perKmRate; // Naming convention (camel case)
+    private double perKmRate; 
     private boolean available;
     private DriverResponse driver;
 }

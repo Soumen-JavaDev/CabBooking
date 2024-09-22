@@ -57,7 +57,7 @@ public class BookingService {
        driver.getBookings().add(saveBooking);
       Customer savCustomer=cRepo.save(customer);
       Driver saveDriver=driverrepo.save(driver);
-      // sendSimpleMessage(savCustomer.getEmail(),"bookin confirmation", "successfully book your trekit");
+    
       sendBookingConfirmation(savCustomer);
 
       return BookingTransformer.responsBooking(saveBooking, savCustomer, availableCar, saveDriver);
@@ -65,33 +65,20 @@ public class BookingService {
     }
 
 
-    // public void sendSimpleMessage (
-    //   String to, String subject, String text) throws Exception{
-        
-    //     SimpleMailMessage message = new SimpleMailMessage(); 
-    //     message.setFrom("mathur.kultuka@gmail.com");
-    //     message.setTo("soumenmondal7584@gmail.com"); 
-    //     message.setSubject(subject); 
-    //     message.setText(text);
-    //     mailSender.send(message);
-      
-    // }
+    
 
     private void sendBookingConfirmation(Customer customer) {
-      if (customer.getEmail() == null) {
-        System.out.println("Customer email is not available, cannot send confirmation.");
-        return;
-    }
+    
 
     try {
         String message = "Dear " + ",\n\nYour booking was successfully confirmed!";
         SimpleMailMessage mail = new SimpleMailMessage();
         mail.setFrom("mathur.kultuka@gmail.com");
-        mail.setTo("soumenmondal7584@gmail.com");
+        mail.setTo(customer.getEmail());
         mail.setSubject("Booking Confirmation");
         mail.setText(message);
 
-        mailSender.send(mail); // Sending email
+        mailSender.send(mail); // Sending email using java mail sender
 
         System.out.println("Booking confirmation email sent to " + customer.getEmail());
     } catch (Exception e) {

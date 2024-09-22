@@ -16,23 +16,23 @@ import java.util.*;
 @RequestMapping("/customer")
 public class CustomerController {
     @Autowired
-    CustomerService service; // Service variable should follow standard naming
+    CustomerService service; 
 
     // Endpoint to add a customer
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<CustomerResponse> addCustomer(@RequestBody CustomerRequest customer) { // Fixed typo: "coutomer" to "customer"
-        CustomerResponse response = service.addCustomer(customer); // Changed "servise" to "service" and updated method call
+    public ResponseEntity<CustomerResponse> addCustomer(@RequestBody CustomerRequest customer) {
+        CustomerResponse response = service.addCustomer(customer); 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
    // Find customer by ID
    @GetMapping("/find/customer/{id}")
-   public ResponseEntity<CustomerResponse> findById(@PathVariable("id") int id) { // Updated parameter name for clarity
+   public ResponseEntity<CustomerResponse> findById(@PathVariable("id") int id) { 
        CustomerResponse response = service.findId(id);
        return new ResponseEntity<>(response, HttpStatus.OK);
    }
-//
+
    // Find customers by gender
    @GetMapping("/gender")
    public List<CustomerResponse> findByGender(@RequestParam("Gender") Gender gender) {
@@ -40,7 +40,7 @@ public class CustomerController {
    }
 
    // Find customers by gender and age
-   @GetMapping("/findByGenderAndAge") // Added mapping for this method
+   @GetMapping("/findByGenderAndAge") 
    public List<CustomerResponse> findByGenderAndAge(@RequestParam("Gender") Gender gender, @RequestParam("age") int age) {
        return service.genderAge(gender, age);
    }
@@ -48,6 +48,6 @@ public class CustomerController {
    // Find by greater age or gender
    @GetMapping("/findByAgeOrGender")
    public List<CustomerResponse> findGreaterAgeOrGender(@RequestParam("age") int age, @RequestParam("gender") String gender) {
-       return service.findGreaterAgeOrGender(age, gender); // Fixed method name
+       return service.findGreaterAgeOrGender(age, gender);
    }
 }
